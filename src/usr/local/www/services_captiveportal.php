@@ -977,7 +977,8 @@ $section->addInput(new Form_Input(
 	'MAC authentication secret',
 	'text',
 	$pconfig['radmac_secret']
-));
+))->setHelp('Choose the value for the User-Password attribute sent in each RADIUS MAC Authentication request. The client\'s MAC address ' .
+			'will be used if this field is left blank.');
 
 $section->addInput(new Form_Select(
 	'radiussrcip_attribute',
