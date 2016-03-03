@@ -1986,6 +1986,12 @@ function portal_mac_radius($clientmac, $clientip) {
 
 	/* authentication against the radius server */
 	$username = mac_format($clientmac);
+
+	if (!isset($radmac_secret)) {
+		/* use the clientmac as the password */
+		$radmac_secret = mac_format($clientmac);
+	}
+
 	$auth_list = radius($username, $radmac_secret, $clientip, $clientmac, "MACHINE LOGIN");
 	if ($auth_list['auth_val'] == 2) {
 		return TRUE;
